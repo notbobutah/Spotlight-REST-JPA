@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+
 
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/")
 public class DiagramRest {
 	
 	@RequestMapping("/diagrams")
@@ -24,11 +28,11 @@ public class DiagramRest {
 		return "][ diagram:{ name: test }]";
 	}
 
-	@RequestMapping("/nodes")
+	@GetMapping("/nodes")
 	public String getNodes() {
 		return "[ node:{ name: test }]";
 	}
-	@RequestMapping("/connectors")
+	@GetMapping("/connectors")
 	public String getConnectors() {
 		return "[ connector:{ name: test }]";
 	}
