@@ -39,7 +39,7 @@ public class SpotlightRest {
         @Autowired
         ConnectorsRepo connectorsRepo;
         
-	@RequestMapping("/diagrams")
+	@GetMapping("/diagrams")
 	public ResponseEntity<List<Diagrams>> getDiagrams() {
                 List<Diagrams> dlist = new ArrayList<Diagrams>();
                 dlist = diagramsRepo.findAll();
