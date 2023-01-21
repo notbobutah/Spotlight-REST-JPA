@@ -1,4 +1,4 @@
-### Spotlight-REST-JPA
+# Spotlight-REST-JPA
 
 This is an example Java Spring Project implmenting REST APIs for the spotlight project. 
 It uses the wollowing:
@@ -8,18 +8,20 @@ It uses the wollowing:
 - Springfox/Swagger
 - Configured for a Postgres db target.
     
-    To Build run:
+###   To Build run:
 
 ```mvn -e clean install```
     
-    To Run 
+###   To Run 
 
 ```mvn exec:java -Dexec.mainClass="com.rrmackay.spotlight.SpotlightApplication"```
     
-    To excercise an endpoint:
-    open a browser to 
+###    To excercise an endpoint:
+###    open a browser to 
     http://localhost:8080/swagger-ui/
 
 
   ### Status:
-     the project only has the findAll interface method implmented and function against the postgres database for diagrams, nodes and connectors list retrieval. Expanding CRUD operations against all entities
+     the project has the findAll interface method implmented and function against the postgres database for diagrams, nodes and connectors list retrieval. Expanding CRUD operations against all entities
+
+     Have yet to add data specific unit tests to project
