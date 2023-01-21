@@ -46,6 +46,11 @@ public class SpotlightRest {
                 dlist = diagramsRepo.findAll();
 		return new ResponseEntity<>(dlist, HttpStatus.OK);
 	}
+        @PutMapping("/diagrams")
+	public ResponseEntity<Diagrams> putDiagrams(Diagrams entity) {
+                entity = diagramsRepo.save(entity);
+		return new ResponseEntity<>(entity, HttpStatus.OK);
+	}
 	@DeleteMapping("/diagrams/{id}")
         public ResponseEntity deleteDiagrams(@RequestParam("id") long id){
                 diagramsRepo.deleteDiagram(id);
@@ -58,10 +63,15 @@ public class SpotlightRest {
                 dlist = nodesRepo.findAll();
 		return new ResponseEntity<>(dlist, HttpStatus.OK);
 	}
-        @DeleteMapping("/nodes/{id}")
-        public ResponseEntity deleteNodes(@RequestParam("id") long id){
-                nodesRepo.deleteById(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+        @PutMapping("/nodes")
+	public ResponseEntity<Nodes> putDiagrams(Nodes entity) {
+                entity = nodesRepo.save(entity);
+		return new ResponseEntity<>(entity, HttpStatus.OK);
+	}
+	@DeleteMapping("/nodes/{id}")
+	public ResponseEntity deleteNodes(@RequestParam("id") long id){
+			nodesRepo.deleteById(id);
+	return new ResponseEntity<>(HttpStatus.OK);
 	}
 	@GetMapping("/connectors")
 	public ResponseEntity<List<Connectors>> getConnectors() {
@@ -69,9 +79,15 @@ public class SpotlightRest {
                 dlist = connectorsRepo.findAll();
 		return new ResponseEntity<>(dlist, HttpStatus.OK);
 	}
-        @DeleteMapping("/connectors/{id}")
-        public ResponseEntity deleteConnectors(@RequestParam("id") long id){
-                connectorsRepo.deleteById(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+        @PutMapping("/connectors")
+	public ResponseEntity<Connectors> putDiagrams(Connectors entity) {
+                entity = connectorsRepo.save(entity);
+		return new ResponseEntity<>(entity, HttpStatus.OK);
+	}
+        
+	@DeleteMapping("/connectors/{id}")
+	public ResponseEntity deleteConnectors(@RequestParam("id") long id){
+			connectorsRepo.deleteById(id);
+	return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
