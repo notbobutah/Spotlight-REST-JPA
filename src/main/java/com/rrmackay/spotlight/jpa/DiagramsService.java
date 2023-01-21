@@ -36,4 +36,9 @@ public class DiagramsService {
         return diagramsRepository.findByName(name);
     }
 
+    @Transactional(readOnly = false)
+    public void deleteDiagrams(long id) {
+        diagramsRepository.deleteDiagram(id);
+    }
+
 }
