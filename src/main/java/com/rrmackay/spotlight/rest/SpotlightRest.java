@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,21 +42,36 @@ public class SpotlightRest {
         
 	@GetMapping("/diagrams")
 	public ResponseEntity<List<Diagrams>> getDiagrams() {
-                List<Diagrams> dlist = new ArrayList<Diagrams>();
+                List<Diagrams> dlist = new ArrayList<>();
                 dlist = diagramsRepo.findAll();
 		return new ResponseEntity<>(dlist, HttpStatus.OK);
+	}
+	@DeleteMapping("/diagrams/{id}")
+        public ResponseEntity deleteDiagrams(@RequestParam("id") long id){
+                diagramsRepo.deleteDiagram(id);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@GetMapping("/nodes")
 	public ResponseEntity<List<Nodes>> getNodes() {
-	        List<Nodes> dlist = new ArrayList<Nodes>();
+	        List<Nodes> dlist = new ArrayList<>();
                 dlist = nodesRepo.findAll();
 		return new ResponseEntity<>(dlist, HttpStatus.OK);
 	}
+        @DeleteMapping("/nodes/{id}")
+        public ResponseEntity deleteNodes(@RequestParam("id") long id){
+                nodesRepo.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 	@GetMapping("/connectors")
 	public ResponseEntity<List<Connectors>> getConnectors() {
-                List<Connectors> dlist = new ArrayList<Connectors>();
+                List<Connectors> dlist = new ArrayList<>();
                 dlist = connectorsRepo.findAll();
 		return new ResponseEntity<>(dlist, HttpStatus.OK);
+	}
+        @DeleteMapping("/connectors/{id}")
+        public ResponseEntity deleteConnectors(@RequestParam("id") long id){
+                connectorsRepo.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
