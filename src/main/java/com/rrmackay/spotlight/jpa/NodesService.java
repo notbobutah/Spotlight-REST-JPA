@@ -4,36 +4,23 @@
  */
 package com.rrmackay.spotlight.jpa;
 
-
-import com.rrmackay.spotlight.jpa.repo.DiagramsRepo;
-import com.rrmackay.spotlight.jpa.models.Diagrams;
+import com.rrmackay.spotlight.jpa.repo.NodesRepo;
+import com.rrmackay.spotlight.jpa.models.Nodes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
-/**
- * User: Quinten
- * Date: 29-4-2014
- * Time: 17:04
- *
- * @author Quinten De Swaef
- */
 @Service
 @Transactional
-public class DiagramsService {
-
+public class NodesService {
+    
     @Autowired
-    private DiagramsRepo diagramsRepository;
+    private NodesRepo nodesRepository;
 
     @Transactional(readOnly = true)
-    public List<Diagrams> getAllDiagrams() {
-        return diagramsRepository.findAll();
-    }
-    @Transactional(readOnly = true)
-    public Diagrams getDiagramsByName(String name) {
-        return diagramsRepository.findByName(name);
+    public List<Nodes> getAllNodes() {
+        return nodesRepository.findAll();
     }
 
 }

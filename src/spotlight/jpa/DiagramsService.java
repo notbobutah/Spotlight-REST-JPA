@@ -5,7 +5,7 @@
 package com.rrmackay.spotlight.jpa;
 
 
-import com.rrmackay.spotlight.jpa.repo.DiagramsRepo;
+import com.rrmackay.spotlight.jpa.DiagramsRepo;
 import com.rrmackay.spotlight.jpa.models.Diagrams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
