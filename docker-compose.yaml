@@ -1,0 +1,54 @@
+version: "2"
+services:
+    db:
+        image: postgres:12
+        container_name: db
+        ports:
+        - "5432:5432"
+        volumes:
+        - db-data:/var/lib/postgresql/data      
+        environment:
+         POSTGRES_USER: postgres
+         POSTGRES_PASSWORD: spotlight
+         POSTGRES_DB: postgres
+    pgadmin:
+        depends_on:
+        - db
+        image: dpage/pgadmin4
+        profiles:
+          - dba
+        container_name: spotlight-db-admin
+        ports:
+        - "5050:5050"
+        environment:
+         PGADMIN_DEFAULT_EMAIL: postgres@localhost
+         PGADMIN_DEFAULT_PASSWORD: spotLight
+         PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: 'True'
+         PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 10 
+
+    spotlight-be:
+        build: .
+        container_name: spotlight-be
+        profiles:
+          - be
+        depends_on:
+          - db
+        links:
+          -  "db:postgres"
+          -  "db"
+        environment:
+          SPRING_DATASOURCE_USERNAME: postgres
+          SPRING_DATASOURCE_PASSWORD: spotlight
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: spotlight
+          POSTGRES_DB: postgres
+          POSTGRES_SERVER: db
+          POSTGRES_PORT: 5432          -  "db:spotlight_db_1"
+          SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:spotlight@db:5432/postgres
+          DATABASE_URL: postgres://postgres:spotlight@postgres:5432/postgres
+          PORT: 8080
+        ports:
+          - "8080:8080"
+volumes:
+  db-data:
+    driver: local
